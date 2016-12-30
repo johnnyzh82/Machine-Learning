@@ -19,16 +19,14 @@ grad = zeros(size(theta));
 
 
 predictions = sigmoid(X * theta);
-
-thetaZero = theta;
-thetaZero(1) = 0;
-
 cost1 = (1/m)*(-y' * log(predictions) - (1-y')*log(1-predictions));
-cost2 = (lambda/(2*m)) * sum(thetaZero.^2);
+cost2 = (lambda/(2*m)) * sum(theta.^2);
 J = cost1 + cost2;
 
-gradient1 = (1/m)*(X' * (predictions - y));
-gradient2 = (lambda/m) * thetaZero;
+
+
+gradient1 = (1/m)*((predictions - y)'*X);
+gradient2 = (lambda/m) * theta;
 grad = gradient1 + gradient2;
 
 % =============================================================
